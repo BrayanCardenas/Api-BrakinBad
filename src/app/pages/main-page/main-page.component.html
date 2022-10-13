@@ -2,8 +2,10 @@
     <h1>Breaking Bad Wiki</h1>
     <hr>
     <input type="text" class="form-control" placeholder="Buscar" (input)="filter($event)">
-    <div *ngFor="let character of characterCopy">
-        <img src="{{character.img}}" alt="{{character.name}}">
-        <p>{{character.name}}</p>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 " *ngFor="let character of character">
+            <app-card [character]="character"></app-card>
+        </div>
     </div>
 </div>

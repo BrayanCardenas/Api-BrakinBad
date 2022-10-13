@@ -22,14 +22,16 @@ export class MainPageComponent implements OnInit {
 
   filter(e: any): void {
     const search: string = e.target.value;
-    console.log({ search })
+    this.character = this.characterCopy.filter(({ name }: Character) => {
+      return name.toLowerCase().includes(search.toLowerCase())
+    })
   }
 
   async getData() {
     await this.http.get<any>(`${environment.apiURL}/characters`)
       .subscribe(
         res => {
-          this.character = res.map(({ char_id, name, nickname, img, status, occupation }: Character ) => {
+          this.character = res.map(({ char_id, name, nickname, img, status, occupation }: Character) => {
             return {
               char_id: char_id,
               name: name,
@@ -45,6 +47,6 @@ export class MainPageComponent implements OnInit {
           console.log(error);
         }
       )
-
   }
+
 }
